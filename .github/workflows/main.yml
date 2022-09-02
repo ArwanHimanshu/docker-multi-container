@@ -23,16 +23,16 @@ jobs:
       # Runs a single command using the runners shell
       - name: building client
       
-        run: docker build -t multi-react-client ./client
+        run: docker build -t supersaver/multi-react-client ./client
 
       - name: building nginx
-        run: docker build -t multi-react-server ./nginx   
+        run: docker build -t supersaver/multi-react-server ./nginx   
 
       - name: building server
-        run: docker build -t multi-react-server ./server
+        run: docker build -t supersaver/multi-react-server ./server
 
       - name: building worker
-        run: docker build -t multi-react-worker ./worker
+        run: docker build -t supersaver/multi-react-worker ./worker
         
       - name: Login to docker hub
         uses: actions-hub/docker/login@master
@@ -42,18 +42,18 @@ jobs:
 
       - name: pushing client image
         uses: docker/build-push-action@v2
-        run: docker  push  multi-react-client 
+        run: docker  push  supersaver/multi-react-client 
 
       - name: pushing worker image
         uses: docker/build-push-action@v2
-        run: docker  push  multi-react-worker         
+        run: docker  push  supersaver/multi-react-worker         
 
       - name: pushing nginx image
         uses: docker/build-push-action@v2
-        run: docker  push  multi-react-nginx
+        run: docker  push  supersaver/multi-react-nginx
 
 
       - name: pushing server image
         uses: docker/build-push-action@v2
-        run: docker  push  multi-react-server
+        run: docker  push  supersaver/multi-react-server
      
