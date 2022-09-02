@@ -43,7 +43,7 @@ jobs:
             
           tags: |
                 supersaver/multi-docker-client
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: true
 
       - name: pushing worker image
         uses: docker/build-push-action@v2
@@ -52,7 +52,7 @@ jobs:
             
           tags: |
                 supersaver/multi-docker-worker
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: true
 
 
       - name: pushing server image
@@ -62,7 +62,7 @@ jobs:
             
           tags: |
                 supersaver/multi-docker-server
-          push: ${{ github.ref == 'refs/heads/main' }}   
+          push: true   
 
       - name: pushing nginx image
         uses: docker/build-push-action@v2
@@ -71,7 +71,7 @@ jobs:
             
           tags: |
                 supersaver/multi-docker-nginx
-          push: ${{ github.ref == 'refs/heads/main' }}            
+          push: true            
 
       # - name: pushing worker image
       #   run: docker  push  supersaver/multi-react-worker         
