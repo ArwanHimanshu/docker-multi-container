@@ -37,49 +37,35 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}   
 
       - name: pushing client image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ./client
             
-          tags: |
-                supersaver/multi-docker-client
+          tags: supersaver/multi-docker-client
           push: true
 
       - name: pushing worker image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ./worker
             
-          tags: |
-                supersaver/multi-docker-worker
+          tags: supersaver/multi-docker-worker
           push: true
 
 
       - name: pushing server image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ./server
             
-          tags: |
-                supersaver/multi-docker-server
+          tags: supersaver/multi-docker-server
           push: true   
 
       - name: pushing nginx image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ./server
             
-          tags: |
-                supersaver/multi-docker-nginx
+          tags:  supersaver/multi-docker-nginx
           push: true            
-
-      # - name: pushing worker image
-      #   run: docker  push  supersaver/multi-react-worker         
-
-      # - name: pushing nginx image
-      #   run: docker  push  supersaver/multi-react-nginx
-
-
-      # - name: pushing server image
-      #   run: docker  push  supersaver/multi-react-server
      
