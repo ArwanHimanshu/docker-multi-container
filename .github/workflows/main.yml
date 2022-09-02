@@ -40,10 +40,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./client
-            
-          tags: |
-                client
-                supersaver/multi-docker-client
+          builder: ${{ steps.buildx.outputs.name }}
+          tags: supersaver/multi-docker-client:latest
           push: true
 
       - name: pushing worker image
@@ -51,8 +49,7 @@ jobs:
         with:
           context: ./worker
             
-          tags: |
-                supersaver/multi-docker-worker
+          tags: supersaver/multi-docker-worker
           push: true
 
 
