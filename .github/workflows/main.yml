@@ -7,11 +7,6 @@ on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -26,11 +21,42 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: building client
+        run: docker build -t multi-react-client ./client .
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: building nginx
+        run: docker build -t multi-react-server ./nginx .      
+
+      - name: building server
+        run: docker build -t multi-react-server ./server .  
+
+      - name: building worker
+        run: docker build -t multi-react-worker ./worker .  
+        
+      - name: Login to docker hub
+        uses: actions-hub/docker/login@master
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_ID }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}   
+
+      - name: pushing client image
+        uses: actions-hub/docker@master
+        with:
+          args: push  multi-react-client 
+
+      - name: pushing worker image
+        uses: actions-hub/docker@master
+        with:
+          args: push  multi-react-worker        
+
+      - name: pushing nginx image
+        uses: actions-hub/docker@master
+        with:
+          args: push  multi-react-nginx  
+
+
+      - name: pushing server image
+        uses: actions-hub/docker@master
+        with:
+          args: push multi-react-server     
+     
