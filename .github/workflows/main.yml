@@ -22,6 +22,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: building client
+      
         run: docker build -t multi-react-client ./client
 
       - name: building nginx
@@ -40,15 +41,19 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}   
 
       - name: pushing client image
+        uses: docker/build-push-action@v2
         run: docker  push  multi-react-client 
 
       - name: pushing worker image
+        uses: docker/build-push-action@v2
         run: docker  push  multi-react-worker         
 
       - name: pushing nginx image
+        uses: docker/build-push-action@v2
         run: docker  push  multi-react-nginx
 
 
       - name: pushing server image
+        uses: docker/build-push-action@v2
         run: docker  push  multi-react-server
      
