@@ -39,6 +39,8 @@ jobs:
       - name: pushing client image
         uses: docker/build-push-action@v2
         with:
+          username: ${{ secrets.DOCKER_ID }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
           context: ./client
           builder: ${{ steps.buildx.outputs.name }}
           tags: supersaver/multi-docker-client:latest
