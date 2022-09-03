@@ -57,17 +57,17 @@ jobs:
           ECR_REPOSITORY: multi-client
           
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:client:latest ./client
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:client:latest
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:client-latest ./client
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:client-latest
 
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:server:latest ./server
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:server:latest
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:server-latest ./server
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:server-latest
 
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:worker:latest ./worker
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:worker:latest
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:worker-latest ./worker
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:worker-latest
 
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:nginx:latest ./nginx
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:nginx:latest
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:nginx-latest ./nginx
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:nginx-latest
 
 
       # - name: build and push client image
