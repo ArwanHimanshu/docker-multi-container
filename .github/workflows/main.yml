@@ -43,7 +43,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./client
-          tags: supersaver/multi-docker/client:latest
+          tags: supersaver/multi-docker-client/client:latest
           push: true
 
       - name: pushing worker image
